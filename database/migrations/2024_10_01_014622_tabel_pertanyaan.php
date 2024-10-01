@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pertanyaan', function (Blueprint $table) {
+        Schema::create('tpertanyaan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('grup_id');
-            $table->foreign('grup_id')->references('id')->on('grup');
+            $table->foreign('grup_id')->references('id')->on('tgrup');
             $table->string('pertanyaan');
 
             $table->timestamps();

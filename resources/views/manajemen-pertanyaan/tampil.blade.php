@@ -6,7 +6,7 @@
     <div class="page-inner">
       <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
-          <a href="/manajemen-pertanyaan/tambah" class="btn btn-primary">
+          <a href="/tambah-pertanyaan/tambah" class="btn btn-primary">
             <i class="fa fa-calendar-plus"></i> Tambah Pertanyaan
           </a>
         </div>
@@ -31,10 +31,11 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($pertanyaan as $no=>$data)
                     <tr>
-                      <td>1</td>
-                      <td>Unsur Pelayanan</td>
-                      <td>Bagaimana penilaian anda tentang kemudahan persyaratan administrasi untuk mendapatkan pelayanan</td>
+                      <td>{{ $no+1 }}</td>
+                      <td></td>
+                      <td>{{ $data->pertanyaan }}</td>
                       <div>
                         <td class="">
                           <a href="/manajemen-pertanyaan/edit" class="btn btn-warning btn-sm">
@@ -46,6 +47,7 @@
                         </td>
                       </div>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

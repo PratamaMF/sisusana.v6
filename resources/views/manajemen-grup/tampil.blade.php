@@ -6,7 +6,7 @@
     <div class="page-inner">
       <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
-          <a href="/manajemen-grup/tambah" class="btn btn-primary">
+          <a href="/tambah-grup/tambah" class="btn btn-primary">
             <i class="fas fa-layer-group"></i> Tambah Grup
           </a>
         </div>

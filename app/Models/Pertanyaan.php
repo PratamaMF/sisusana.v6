@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Pertanyaan extends Model
 {
     use HasFactory;
-    protected $table = 'pertanyaan';
+    protected $table = 'tpertanyaan';
 
     public function detail_absensi(): BelongsTo
     {
