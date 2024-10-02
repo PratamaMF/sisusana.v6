@@ -33,17 +33,20 @@
                   <tbody>
                     @foreach ($pertanyaan as $no=>$data)
                     <tr>
-                      <td>{{ $no+1 }}</td>
-                      <td></td>
+                      <td class="text-center">{{ $no+1 }}</td>
+                      <td>{{ $data->grup->nama_grup }}</td>
                       <td>{{ $data->pertanyaan }}</td>
                       <div>
-                        <td class="">
-                          <a href="/manajemen-pertanyaan/edit" class="btn btn-warning btn-sm">
+                        <td class="d-flex">
+                          <a href="{{ route('manajemen-pertanyaan.edit', $data->id) }}" class="btn btn-warning btn-sm">
                             <i class="fas fa-pen"></i> Edit
                           </a>
-                          <a href="hapus.php" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
-                            <i class="fas fa-trash"></i> Hapus
-                          </a>
+                          <form action="{{ route('manajemen-pertanyaan.hapus', $data->id) }}" method="post">
+                            @csrf
+                            <button class="btn btn-danger btn-sm ms-1" id="hapus" >
+                              <i class="fas fa-trash"></i> Hapus
+                            </button>
+                          </form>
                         </td>
                       </div>
                     </tr>

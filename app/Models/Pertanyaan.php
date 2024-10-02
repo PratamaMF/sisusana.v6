@@ -11,7 +11,7 @@ class Pertanyaan extends Model
     use HasFactory;
     protected $table = 'tpertanyaan';
 
-    public function detail_absensi(): BelongsTo
+    public function grup(): BelongsTo
     {
         return $this->belongsTo(Grup::class);
     }

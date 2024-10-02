@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grup;
 use App\Models\Pertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -18,40 +19,41 @@ class PertanyaanController extends Controller
         return view('manajemen-pertanyaan.tambah');
     }
 
-    // function submit(Request $request){
+    function submit(Request $request){
+        $pertanyaan = new Pertanyaan();
+        $pertanyaan->grup_id = $request->select_grup;
+        $pertanyaan->pertanyaan = $request->pertanyaan;
+        $pertanyaan->save();
 
-    //     Session::flash('pertanyaan', $request->pertanyaan);
+        return redirect()->route('manajemen-pertanyaan.tampil')->with('success', 'Data berhasil disimpan.');
+    }
 
-    //     $request->validate([
-    //         'pertanyaan' => 'required'
-    //     ],[
-    //         'pertanyaan.required'=>'Pertanyaan Wajib Diisi!'
-    //     ]);
+    public function select_grup(){
+        $grup = Grup::all();
+        return view('manajemen-pertanyaan.tambah', compact('grup'));
+    }
 
-    //     $pertanyaan = new Pertanyaan();
-    //     $pertanyaan->pertanyaan = $request->pertanyaan;
-    //     $pertanyaan->save();
+    function edit($id){
+        $pertanyaan = Pertanyaan::find($id);
+        $grup = Grup::all(); // Ambil semua grup
 
-    //     return redirect()->route('manajemen-per$pertanyaan.tampil')->with('success', 'Data berhasil disimpan.');
-    // }
+        return view('manajemen-pertanyaan.edit', compact('pertanyaan','grup')); 
+    }
 
-    // function edit($id){
-    //     $pertanyaan = Pertanyaan::find($id);
-    //     return view('manajemen-pertanyaan.edit', compact('pertanyaan')); 
-    // }
+    function exedit(Request $request, $id){
+        $pertanyaan = Pertanyaan::find($id);
+        
+        $pertanyaan->grup_id = $request->select_grup;
+        $pertanyaan->pertanyaan = $request->pertanyaan;
+        $pertanyaan->update();
 
-    // function exedit(Request $request, $id){
-    //     $pertanyaan = Pertanyaan::find($id);
-    //     $pertanyaan->pertanyaan = $request->pertanyaan;
-    //     $pertanyaan->update();
-
-    //     return redirect()->route('manajemen-pertanyaan.tampil')->with('success', 'Data berhasil di edit.');
-    // }
+        return redirect()->route('manajemen-pertanyaan.tampil')->with('success', 'Data berhasil di edit.');
+    }
  
-    // function hapus($id){
-    //     $pertanyaan = Pertanyaan::find($id);
-    //     $pertanyaan->delete();
+    function hapus($id){
+        $pertanyaan = Pertanyaan::find($id);
+        $pertanyaan->delete();
 
-    //     return redirect()->route('manajemen-pertanyaan.tampil');
-    // }
+        return redirect()->route('manajemen-pertanyaan.tampil');
+    }
 }

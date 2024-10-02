@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\GrupController;
 use App\Http\Controllers\PertanyaanController;
+use App\Models\Grup;
+use App\Models\Pertanyaan;
 use Illuminate\Support\Facades\Route;
 
 // ====== Sidebar ======
@@ -32,13 +34,12 @@ Route::get('/adminlogin', function () {
 
 
 // ====== Manajemen User ======
-Route::get('/manajemen-user/tambah', function () {
-    return view('manajemen-user.tambah');
-});
-
-Route::get('/manajemen-user/edit', function () {
-    return view('manajemen-user.edit');
-});
+Route::get('/manajemen-user', [TuserController::class, 'tampil'])->name('manajemen-user.tampil');
+Route::get('/manajemen-user/tambah', [TuserController::class, 'tambah'])->name('manajemen-user.tambah');
+Route::post('/manajemen-user/submit', [TuserController::class, 'submit'])->name('manajemen-user.submit');
+Route::get('/edit-user/{id}', [TuserController::class, 'edit'])->name('manajemen-user.edit');
+Route::post('/exedit-user/{id}', [TuserController::class, 'exedit'])->name('manajemen-user.exedit');
+Route::post('/hapus-user/{id}', [TuserController::class, 'hapus'])->name('manajemen-user.hapus');
 
 // ====== Manajemen Grup ======
 Route::get('/manajemen-grup', [GrupController::class, 'tampil'])->name('manajemen-grup.tampil');
@@ -51,6 +52,7 @@ Route::post('/hapus-grup/{id}', [GrupController::class, 'hapus'])->name('manajem
 // ====== Manajemen Pertanyaan ======
 Route::get('/manajemen-pertanyaan', [PertanyaanController::class, 'tampil'])->name('manajemen-pertanyaan.tampil');
 Route::get('/tambah-pertanyaan/tambah', [PertanyaanController::class, 'tambah'])->name('manajemen-pertanyaan.tambah');
+Route::get('/tambah-pertanyaan/tambah', [PertanyaanController::class, 'select_grup'])->name('manajemen-pertanyaan.select_grup');
 Route::post('/manajemen-pertanyaan/submit', [PertanyaanController::class, 'submit'])->name('manajemen-pertanyaan.submit');
 Route::get('/edit-pertanyaan/{id}', [PertanyaanController::class, 'edit'])->name('manajemen-pertanyaan.edit');
 Route::post('/exedit-pertanyaan/{id}', [PertanyaanController::class, 'exedit'])->name('manajemen-pertanyaan.exedit');

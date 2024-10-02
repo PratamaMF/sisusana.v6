@@ -11,7 +11,7 @@ class Grup extends Model
     use HasFactory;
     protected $table = 'tgrup';
 
-    public function detail_absensi(): HasMany
+    public function pertanyaan(): HasMany
     {
         return $this->hasMany(Pertanyaan::class);
     }
