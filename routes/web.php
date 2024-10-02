@@ -32,15 +32,6 @@ Route::get('/adminlogin', function () {
 }); 
 
 
-
-// ====== Manajemen User ======
-Route::get('/manajemen-user', [TuserController::class, 'tampil'])->name('manajemen-user.tampil');
-Route::get('/manajemen-user/tambah', [TuserController::class, 'tambah'])->name('manajemen-user.tambah');
-Route::post('/manajemen-user/submit', [TuserController::class, 'submit'])->name('manajemen-user.submit');
-Route::get('/edit-user/{id}', [TuserController::class, 'edit'])->name('manajemen-user.edit');
-Route::post('/exedit-user/{id}', [TuserController::class, 'exedit'])->name('manajemen-user.exedit');
-Route::post('/hapus-user/{id}', [TuserController::class, 'hapus'])->name('manajemen-user.hapus');
-
 // ====== Manajemen Grup ======
 Route::get('/manajemen-grup', [GrupController::class, 'tampil'])->name('manajemen-grup.tampil');
 Route::get('/tambah-grup/tambah', [GrupController::class, 'tambah'])->name('manajemen-grup.tambah');
